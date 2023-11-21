@@ -3,15 +3,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class View extends CI_Controller {
     
+    // public function index()
+    // {
+    //     $data['nome'] = 'Carmona';
+    //     $data['title'] = 'Página de teste';
+    //     $data['tecnologias'] = array("PHP", "CI", "MySQL", "VsCode");
+        
+    //     $html = $this->load->view('basico', $data, TRUE);
+    //     echo $html;
+    // }
+
     public function index()
     {
-        $data['nome'] = 'Andre';
-        $data['title'] = 'Curso codeIgniter';
+        $data = array();
+        $data['VARIAVEL'] = 'Mensagem de teste.';
 
-        $data['tecnologias'] = array("PHP", "CI", "MySql", "VSCode");
+        $data['BLC_MENSAGEM'] = array(array("MENSAGEM" => 'Error'));
 
-       $html = $this->load->view('basico', $data, TRUE);
+        $tec = array("PHP", "CI", "MySQL", "VsCode");
 
-       echo $html;
+        foreach($tec as $t) {
+            $data['BLC_TECNOLOGIAS'][] = array("ITEM" => $t);
+        }
+
+        $data['NOME'] = 'Andre';
+
+        // $data['BLC_TECNOLOGIAS'][] = array("ITEM" => 'MySQL');
+        // $data['BLC_TECNOLOGIAS'][] = array("ITEM" => 'CodeIgniter');
+        
+        $this->parser->parse('parser', $data);
     }
 }
