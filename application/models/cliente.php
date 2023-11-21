@@ -5,6 +5,10 @@ class Cliente extends CI_Model {
 
     public function get()
     {
-        $this->db->select('')
+        $this->db->select('cliente.codcliente, cliente.nome');
+        $this->db->select('cidade.nome as nomecidade', FALSE);
+        $this->db->from('cliente');
+        $this->db->join('cidade', 'cidade.codcidade = cliente.codcidade');
+        return $this->db->get()->result();
     }
 }
